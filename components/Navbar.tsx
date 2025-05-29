@@ -8,6 +8,7 @@ const Navbar = () => {
       <Link href="/">
         <div className="flex items-center gap-2.5 cursor-pointer">
           <Image src={`/icons/huohuo.png`} alt="logo" width={46} height={44} />
+          <h1>Envorso</h1>
         </div>
       </Link>
       <div className="flex items-center gap-8">
