@@ -13,8 +13,11 @@ interface CompanionSessionProps {
 
 const CompanionSession = async ({ params }: CompanionSessionProps) => {
   const { id } = await params;
-  const { name, subject, title, topic, duration } = await getCompanion(id);
+  const companion = await getCompanion(id);
   const user = await currentUser();
+
+  const { name, subject, title, topic, duration } = companion;
+
   if (!user) redirect("/sign-in");
   if (!name) redirect("/companions");
   return (
@@ -44,7 +47,12 @@ const CompanionSession = async ({ params }: CompanionSessionProps) => {
           {duration} minutes
         </div>
       </article>
-      <CompanionComponent></CompanionComponent>
+      <CompanionComponent
+        {...companion}
+        companionId={id}
+        userName={user.firstName!}
+        userImage={user.imageUrl!}
+      />
     </main>
   );
 };
