@@ -10,7 +10,6 @@ const CompanionsLibrary = async ({ searchParams }: SearchParams) => {
   const topic = filters.topic ? filters.topic : "";
 
   const companions = await getAllCompanions({ subject, topic });
-  console.log(companions);
 
   return (
     <main>
@@ -22,7 +21,7 @@ const CompanionsLibrary = async ({ searchParams }: SearchParams) => {
         </div>
       </section>
       <section className="companions-grid">
-        {companions.map((companion) => (
+        {companions?.map((companion) => (
           <CompanionCard
             key={companion.id}
             {...companion}
